@@ -1,0 +1,8 @@
+Order Summary
+ - - - - - - - - - - - -
+Name: dad
+Coffee Type: americano
+Size: medium
+Total Price: 865
+Instructions: 
+Thank you for ordering!
