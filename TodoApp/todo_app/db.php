@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
 $db = 'todo_app';
-$user = 'root'; // Replace with your MySQL username
-$pass = '';     // Replace with your MySQL password (default is empty for XAMPP)
+$user = 'root'; 
+$pass = '';     
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
