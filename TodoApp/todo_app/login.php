@@ -2,7 +2,7 @@
 session_start();
 require 'db.php';
 
-// Handle login
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="form-container">
             <h1>Login</h1>
 
-            <!-- Show error message if login fails -->
+            
             <?php if (isset($error_message)): ?>
                 <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
             <?php endif; ?>
@@ -134,3 +134,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </body>
 </html>
+
+// Sana makapasa ma'am 
