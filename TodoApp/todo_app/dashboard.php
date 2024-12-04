@@ -2,13 +2,13 @@
 session_start();
 require 'db.php';
 
-// Redirect to login if not logged in
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
-// Handle task addition (Create)
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_task'])) {
     $task = $_POST['task'];
     $due_time = $_POST['due_time'];
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_task'])) {
     exit();
 }
 
-// Handle task update (Update)
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_task'])) {
     $task_id = $_POST['task_id'];
     $new_task = $_POST['task'];
@@ -26,13 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_task'])) {
     $stmt = $pdo->prepare("UPDATE tasks SET task = ?, due_time = ? WHERE id = ? AND user_id = ?");
     $stmt->execute([$new_task, $due_time, $task_id, $_SESSION['user_id']]);
 
-    // Set success message in session
+    
     $_SESSION['success_message'] = 'Task updated successfully!';
     header("Location: dashboard.php");
     exit();
 }
 
-// Handle task completion toggle
+
 if (isset($_POST['toggle_task_completion'])) {
     $task_id = $_POST['task_id'];
     $completed = $_POST['completed'];
@@ -42,7 +42,7 @@ if (isset($_POST['toggle_task_completion'])) {
     exit();
 }
 
-// Handle task deletion (Delete)
+
 if (isset($_GET['delete_task'])) {
     $task_id = $_GET['delete_task'];
     $stmt = $pdo->prepare("DELETE FROM tasks WHERE id = ? AND user_id = ?");
@@ -51,7 +51,7 @@ if (isset($_GET['delete_task'])) {
     exit();
 }
 
-// Fetch tasks (Read)
+
 $stmt = $pdo->prepare("SELECT * FROM tasks WHERE user_id = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -157,7 +157,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
             border-radius: 4px;
             text-align: center;
         }
-        /* New styling for the update box */
+        
         .task-update-box {
             background-color: #f8f9fa;
             padding: 15px;
@@ -182,7 +182,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="dashboard-container">
             <h1>Your Task Dashboard</h1>
 
-            <!-- Show notification if there is a success message -->
+            
             <?php if (isset($_SESSION['success_message'])): ?>
                 <div class="notification">
                     <?php echo $_SESSION['success_message']; ?>
@@ -236,7 +236,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </div>
 
-            <!-- Footer with logout link -->
+            
             <div class="footer">
                 <a href="logout.php">Logout</a>
             </div>
